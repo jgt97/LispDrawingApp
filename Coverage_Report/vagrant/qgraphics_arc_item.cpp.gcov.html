@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - Coverage.combined.cleaned - /vagrant/qgraphics_arc_item.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">vagrant</a> - qgraphics_arc_item.cpp<span style="font-size: 80%;"> (source / <a href="qgraphics_arc_item.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">Coverage.combined.cleaned</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">17</td>
+            <td class="headerCovTableEntry">20</td>
+            <td class="headerCovTableEntryMed">85.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-04-10 21:01:09</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryLo">50.0 %</td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &lt;QGraphicsEllipseItem&gt;</a>
+<span class="lineNum">       2 </span>            : #include &lt;limits&gt;
+<span class="lineNum">       3 </span>            : #include &lt;cmath&gt;
+<a name="4"><span class="lineNum">       4 </span>            : #include &quot;qgraphics_arc_item.hpp&quot;</a>
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span><span class="lineCov">         36 : QGraphicsArcItem::QGraphicsArcItem(std::tuple&lt;double, double&gt; center, std::tuple&lt;double, double&gt; start, double angle)</span>
+<span class="lineNum">       7 </span>            : {
+<span class="lineNum">       8 </span>            :         double centx, centy, strtx, strty;
+<span class="lineNum">       9 </span><span class="lineCov">         36 :         centx = std::get&lt;0&gt;(center);</span>
+<span class="lineNum">      10 </span><span class="lineCov">         36 :         centy = std::get&lt;1&gt;(center);</span>
+<span class="lineNum">      11 </span><span class="lineCov">         36 :         strtx = std::get&lt;0&gt;(start);</span>
+<span class="lineNum">      12 </span><span class="lineCov">         36 :         strty = std::get&lt;1&gt;(start);</span>
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span><span class="lineCov">         36 :         QLineF rad(centx, centy, strtx, strty);</span>
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span><span class="lineCov">         36 :         double pi = atan2(0, -1);</span>
+<span class="lineNum">      17 </span><span class="lineCov">         36 :         double xPos = rad.x1() - rad.length();</span>
+<span class="lineNum">      18 </span><span class="lineCov">         36 :         double yPos = rad.y1() - rad.length();</span>
+<span class="lineNum">      19 </span><span class="lineCov">         36 :         double width = rad.length() * 2;</span>
+<span class="lineNum">      20 </span><span class="lineCov">         36 :         double height = rad.length() * 2;</span>
+<span class="lineNum">      21 </span><span class="lineCov">         36 :         double strtAng = 16 * rad.angle();</span>
+<span class="lineNum">      22 </span><span class="lineCov">         36 :         double an = 16 * angle * 180 / pi;</span>
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span><span class="lineCov">         36 :         setStartAngle(strtAng);</span>
+<span class="lineNum">      25 </span><span class="lineCov">         36 :         setSpanAngle(an);</span>
+<span class="lineNum">      26 </span><span class="lineCov">         36 :         setRect(xPos, yPos, width, height);</span>
+<a name="27"><span class="lineNum">      27 </span><span class="lineCov">         36 : }</span></a>
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span><span class="lineNoCov">          0 : void QGraphicsArcItem::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)</span>
+<span class="lineNum">      30 </span>            : {
+<span class="lineNum">      31 </span><span class="lineNoCov">          0 :         painter-&gt;drawArc(rect(), startAngle(), spanAngle());</span>
+<span class="lineNum">      32 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">      33 </span>            : 
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
